@@ -2,10 +2,28 @@
   "site": {
     "name": "玄品心决",
     "tagline": "Temu 选品笔记",
-    "description": "记录 Temu 卖家心里那杆秤：选品手记、采访口述、同题异构、可带走的判断清单。",
+    "description": "记录选品路上那杆秤。算克重、懂毛利、不踩坑。当前以 Temu 卖家手记与采访为主。",
     "keywords": "Temu选品,选品工具,选品采访"
   },
-  "notes": [],
+  "notes": [
+    {
+      "id": "note-001",
+      "status": "published",
+      "title": "摸过成品的人，看屏幕上的克重不一样",
+      "date": "2026-06-09",
+      "category": "选品手记",
+      "content": "content/note-001.html",
+      "meta": "选品手记 · 2026-06-09",
+      "tags": [
+        "克重",
+        "成本",
+        "品控"
+      ],
+      "contrast_q": "first-look",
+      "contrast_label": "玉成 · 选品手记",
+      "contrast_answer": "先想这件货在手里沉不沉、糙不糙，再信页面上的克重。"
+    }
+  ],
   "interviews": [
     {
       "id": "interview-01",
@@ -72,6 +90,12 @@
           "text": "先看评论区有没有差评集中点。",
           "source": "interview-03",
           "status": "draft"
+        },
+        {
+          "label": "玉成 · 选品手记",
+          "text": "先想这件货在手里沉不沉、糙不糙，再信页面上的克重。",
+          "source": "note-001",
+          "status": "published"
         }
       ]
     }
