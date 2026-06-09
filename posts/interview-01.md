@@ -7,6 +7,7 @@ years: 两年
 date: 2026-06-06
 status: published
 role: 个人卖家
+tag: 新手推荐
 contrast_q: first-look
 contrast_label: B · 宠物饰品 · 两年
 contrast_answer: 先看能不能做差异化图案。

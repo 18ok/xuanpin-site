@@ -143,7 +143,7 @@ def compile_md(path: Path, *, kind: str) -> dict:
         entry["meta"] = f"{meta.get('category', '选品手记')} · {meta.get('date', '')}"
         entry["tags"] = [t.strip() for t in meta.get("tags", "").strip("[]").split(",") if t.strip()]
 
-    for key in ("contrast_q", "contrast_label", "contrast_answer"):
+    for key in ("contrast_q", "contrast_label", "contrast_answer", "tag"):
         if meta.get(key):
             entry[key] = meta[key]
     return entry
