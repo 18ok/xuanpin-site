@@ -24,9 +24,10 @@
 
     function articleRow(item) {
         var published = item.status === "published" && item.content;
+        var tagHtml = item.tag ? '<span class="article-tag">' + esc(item.tag) + '</span>' : '';
         var titleInner = published
-            ? '<button type="button" class="reader-inline-link reader-inline-link--title" data-reader-open="' + esc(item.id) + '">' + esc(item.title) + "</button>"
-            : esc(item.title);
+            ? tagHtml + '<button type="button" class="reader-inline-link reader-inline-link--title" data-reader-open="' + esc(item.id) + '">' + esc(item.title) + "</button>"
+            : tagHtml + esc(item.title);
         var action = published
             ? '<button type="button" class="article-list__link reader-inline-link" data-reader-open="' + esc(item.id) + '">阅读</button>'
             : '<span class="article-list__link article-list__link--soon">整理中</span>';

@@ -890,3 +890,25 @@ body.reader-open {
         padding: 3.25rem 1.25rem 2rem;
     }
 }
+
+.hero-author {
+    font-size: .8125rem;
+    color: var(--ink-muted);
+    margin-top: .25rem;
+    margin-bottom: .625rem;
+}
+
+.article-tag {
+    display: inline-block;
+    font-size: .6875rem;
+    font-weight: 600;
+    letter-spacing: .03em;
+    color: var(--accent-warm-deep);
+    background: var(--accent-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 3px;
+    padding: .05rem .45rem;
+    margin-right: .5rem;
+    vertical-align: middle;
+    line-height: 1.6;
+}
