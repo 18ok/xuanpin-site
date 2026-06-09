@@ -73,12 +73,6 @@ window.XJ_MANIFEST = {
           "text": "先看评论区有没有差评集中点。",
           "source": "interview-03",
           "status": "draft"
-        },
-        {
-          "label": "C · 潮玩 · 一年",
-          "text": "先看评论区有没有差评集中点。",
-          "source": "interview-03",
-          "status": "draft"
         }
       ]
     }

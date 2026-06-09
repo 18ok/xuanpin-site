@@ -182,20 +182,33 @@ def build_contrasts(entries: list[dict]) -> list[dict]:
 
     for voice in cfg.get("pending", []):
         q = voice.get("q")
-        if q:
-            groups.setdefault(q, []).append({
-                "label": voice.get("label", ""),
-                "text": voice.get("text") or voice.get("answer", ""),
-                "source": voice.get("source", ""),
-                "status": voice.get("status", "draft"),
-            })
+        if not q:
+            continue
+        source = voice.get("source", "")
+        existing = groups.get(q, [])
+        if source and any(v.get("source") == source for v in existing):
+            continue
+        groups.setdefault(q, []).append({
+            "label": voice.get("label", ""),
+            "text": voice.get("text") or voice.get("answer", ""),
+            "source": source,
+            "status": voice.get("status", "draft"),
+        })
 
     result = []
     for qid, voices in groups.items():
+        seen: set[str] = set()
+        unique: list[dict] = []
+        for v in voices:
+            key = v.get("source") or v.get("label", "")
+            if key in seen:
+                continue
+            seen.add(key)
+            unique.append(v)
         result.append({
             "id": qid,
             "question": questions.get(qid, qid),
-            "voices": voices,
+            "voices": unique,
         })
     return result
 
