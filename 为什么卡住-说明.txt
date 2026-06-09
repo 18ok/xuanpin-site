@@ -1,0 +1,31 @@
+为什么之前一直卡住？
+====================
+
+1. GitHub 上还没有 xuanpin-site 这个仓库
+   → git push 报 Repository not found
+
+2. 自动脚本里用了 gh auth login
+   → 要在浏览器里点授权，等你操作
+   → 你没点或窗口关了，脚本就挂 7 分钟直到超时
+
+3. 你本机 gh 显示未登录
+   → 无法用命令自动建仓库
+
+现在最简单的办法（不用 gh）
+============================
+
+双击：一键发布到GitHub.bat
+
+若提示仓库不存在：
+  → 会自动打开 GitHub 新建页
+  → 仓库名 xuanpin-site，选 Public，不要 README
+  → 点 Create 后回到黑窗口按任意键
+  → 自动 push
+
+最后手动一步（30 秒）：
+  → 脚本会打开 Pages 设置页
+  → Source 选 GitHub Actions
+  → 等 Actions 变绿
+
+读者网址：
+  https://18ok.github.io/xuanpin-site/

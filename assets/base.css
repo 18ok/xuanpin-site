@@ -25,12 +25,12 @@ a {
     transition: color var(--motion-fast) var(--ease-out);
 }
 
-a:hover { color: var(--gold-dark); }
+a:hover { color: var(--accent-warm-deep); }
 
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
 }
 
@@ -93,7 +93,7 @@ input:focus-visible {
 .site-nav a[aria-current="page"] {
     color: var(--ink);
     text-decoration: underline;
-    text-decoration-color: var(--gold);
+    text-decoration-color: var(--accent-warm);
 }
 
 .read-progress {
@@ -102,7 +102,7 @@ input:focus-visible {
     left: 0;
     height: 2px;
     width: 0;
-    background: var(--gold);
+    background: var(--accent);
     z-index: 100;
     pointer-events: none;
 }
@@ -195,12 +195,12 @@ input:focus-visible {
 .btn--primary {
     border-color: var(--border-gold);
     color: var(--ink);
-    background: var(--gold-bg);
+    background: var(--surface);
 }
 
 .btn--primary:hover {
-    border-color: var(--gold);
-    background: rgba(226, 184, 122, 0.14);
+    border-color: var(--accent-warm);
+    background: var(--accent-bg);
 }
 
 .section {
@@ -250,7 +250,7 @@ input:focus-visible {
     content: counter(article, decimal-leading-zero);
     font-family: var(--font-display);
     font-size: 1rem;
-    color: var(--gold-dark);
+    color: var(--accent-warm-deep);
     padding-top: 0.15rem;
 }
 
@@ -268,9 +268,9 @@ input:focus-visible {
 }
 
 .article-list__title a:hover {
-    color: var(--gold-dark);
+    color: var(--accent-warm-deep);
     text-decoration: underline;
-    text-decoration-color: var(--gold);
+    text-decoration-color: var(--accent-warm);
 }
 
 .article-list__meta {
@@ -335,7 +335,7 @@ input:focus-visible {
 
 .signal-list li::before {
     content: "·";
-    color: var(--gold-dark);
+    color: var(--accent);
     margin-right: 0.5rem;
 }
 
@@ -455,7 +455,7 @@ input:focus-visible {
 
 .checklist input {
     margin-right: 0.5rem;
-    accent-color: var(--gold-dark);
+    accent-color: var(--accent);
 }
 
 .calc-form {
@@ -523,6 +523,8 @@ body.reader-open {
 
 .reader[hidden] {
     display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
 }
 
 .reader {
@@ -537,14 +539,14 @@ body.reader-open {
 .reader__backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(46, 46, 46, 0.38);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(69, 69, 69, 0.22);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     .reader__backdrop {
-        background: rgba(46, 46, 46, 0.52);
+        background: rgba(69, 69, 69, 0.32);
     }
 }
 
@@ -582,8 +584,8 @@ body.reader-open {
 }
 
 .reader__back:hover {
-    border-color: var(--gold);
-    background: var(--gold-bg);
+    border-color: var(--accent-warm);
+    background: var(--accent-bg);
 }
 
 .reader__panel {
@@ -606,7 +608,7 @@ body.reader-open {
     left: 0;
     height: 2px;
     width: 0;
-    background: var(--gold);
+    background: var(--accent);
     z-index: 2;
     pointer-events: none;
     border-radius: var(--radius) var(--radius) 0 0;
@@ -618,7 +620,7 @@ body.reader-open {
     flex: 1;
     padding: 2rem 1.75rem 2.5rem;
     scrollbar-width: thin;
-    scrollbar-color: var(--gold-dark) transparent;
+    scrollbar-color: var(--accent-muted) transparent;
 }
 
 .reader__scroll::-webkit-scrollbar {
@@ -626,7 +628,7 @@ body.reader-open {
 }
 
 .reader__scroll::-webkit-scrollbar-thumb {
-    background: rgba(201, 158, 94, 0.55);
+    background: var(--accent-muted);
     border-radius: 3px;
 }
 
@@ -657,7 +659,7 @@ body.reader-open {
 
 .reader-inline-link {
     font: inherit;
-    color: var(--gold-dark);
+    color: var(--accent-warm-deep);
     background: none;
     border: none;
     padding: 0;
@@ -668,6 +670,12 @@ body.reader-open {
 
 .reader-inline-link:hover {
     color: var(--ink);
+}
+
+.reader-inline-link--title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    text-align: left;
 }
 
 .reader__backdrop-hint {
@@ -720,10 +728,112 @@ body.reader-open {
 
 .article-list__item.is-last-read,
 .brief-list__item.is-last-read {
-    background: var(--gold-bg);
+    background: var(--accent-bg);
     margin-inline: -0.75rem;
     padding-inline: 0.75rem;
     border-radius: var(--radius);
+}
+
+.article-list__item--empty {
+    list-style: none;
+}
+
+.reader-note-title {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+}
+
+.reader-section-label {
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 1.75rem 0 0.75rem;
+}
+
+.tool-list {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+}
+
+.tool-list__item a {
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.tool-list__item a:hover {
+    text-decoration: underline;
+}
+
+.tool-list__meta {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--ink-muted);
+    margin-top: 0.15rem;
+}
+
+.tool-list__note {
+    font-size: 0.9375rem;
+    color: var(--ink-muted);
+    margin-top: 0.35rem;
+}
+
+.tool-waitlist {
+    margin-top: 1.5rem;
+    font-size: 0.9375rem;
+    color: var(--ink-muted);
+}
+
+.site-footer__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.subscribe-box__hint {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    max-width: 28rem;
+}
+
+.subscribe-box__form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.subscribe-box__label {
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.subscribe-box__input {
+    font: inherit;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    min-width: 12rem;
+    background: var(--surface);
+}
+
+.file-protocol-hint {
+    background: #fffff0;
+    border-bottom: 1px solid rgba(196, 168, 130, 0.45);
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9375rem;
+    color: var(--ink-muted);
+    text-align: center;
+}
+
+.file-protocol-hint code {
+    font-size: 0.875em;
 }
 
 @media (max-width: 640px) {

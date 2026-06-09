@@ -1,7 +1,7 @@
 @echo off
 chcp 65001 >nul
 cd /d "%~dp0"
-title 选品心决 · 本地预览（仅开发者）
+title 玄品心决 · 本地预览（仅开发者）
 
 where python >nul 2>&1
 if %errorlevel% neq 0 (
@@ -12,10 +12,10 @@ if %errorlevel% neq 0 (
 )
 
 echo.
-echo   [开发用] 选品心决本地预览
+echo   [开发用] 玄品心决本地预览
 echo   http://localhost:8765/
 echo.
-echo   正式网址见 选品心决技巧.txt
+echo   正式网址见 启用GitHub-Pages说明.txt
 echo   关闭此窗口即停止服务
 echo.
 

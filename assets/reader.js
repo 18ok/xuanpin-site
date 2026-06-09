@@ -16,7 +16,14 @@
     var hintEl = readerEl.querySelector(".reader__backdrop-hint");
 
     var manifest = null;
-    var contentMap = {};
+    /* 同步兜底：manifest 拉取完成前也能响应点击 */
+    var contentMap = {
+        "interview-01": "content/interview-01.html",
+        "toolbox": "content/toolbox.html",
+        "brief-01": "content/brief-01.html",
+        "brief-02": "content/brief-02.html",
+        "calculator": "content/calculator.html"
+    };
     var isOpen = false;
     var currentId = null;
     var backdropReadyAt = 0;
@@ -25,28 +32,38 @@
 
     function loadManifest() {
         if (manifest) return Promise.resolve(manifest);
-        return fetch("data/manifest.json")
-            .then(function (r) { return r.json(); })
+        var load = window.XJ && window.XJ.loadManifest
+            ? window.XJ.loadManifest()
+            : fetch("data/manifest.json").then(function (r) { return r.json(); });
+        return load
             .then(function (data) {
                 manifest = data;
-                (data.interviews || []).forEach(function (item) {
-                    if (item.content) contentMap[item.id] = item.content;
-                });
-                (data.briefs || []).forEach(function (item) {
-                    if (item.content) contentMap[item.id] = item.content;
-                });
-                (data.tools || []).forEach(function (item) {
-                    if (item.content) contentMap[item.id] = item.content;
-                });
+                if (window.XJ && window.XJ.applyContentMap) {
+                    window.XJ.applyContentMap(contentMap, data);
+                } else {
+                    (data.notes || []).forEach(function (item) {
+                        if (item.content) contentMap[item.id] = item.content;
+                    });
+                    (data.interviews || []).forEach(function (item) {
+                        if (item.content) contentMap[item.id] = item.content;
+                    });
+                    (data.briefs || []).forEach(function (item) {
+                        if (item.content) contentMap[item.id] = item.content;
+                    });
+                    (data.tools || []).forEach(function (item) {
+                        if (item.content) contentMap[item.id] = item.content;
+                    });
+                }
                 return manifest;
             })
             .catch(function () {
-                contentMap = {
-                    "interview-01": "content/interview-01.html",
-                    "brief-01": "content/brief-01.html",
-                    "brief-02": "content/brief-02.html",
-                    "calculator": "content/calculator.html"
-                };
+                if (window.XJ_MANIFEST) {
+                    manifest = window.XJ_MANIFEST;
+                    if (window.XJ && window.XJ.applyContentMap) {
+                        window.XJ.applyContentMap(contentMap, manifest);
+                    }
+                    return manifest;
+                }
                 return null;
             });
     }
@@ -142,7 +159,7 @@
     }
 
     function open(id, hash, fromSwitch) {
-        if (!id || !contentMap[id]) return;
+        if (!id) return;
 
         loadManifest().then(function () {
             var path = contentMap[id];
@@ -155,7 +172,10 @@
             }
 
             return fetch(path)
-                .then(function (r) { return r.text(); })
+                .then(function (r) {
+                    if (!r.ok) throw new Error("content " + r.status);
+                    return r.text();
+                })
                 .then(function (html) {
                     contentEl.innerHTML = html;
                     currentId = id;
@@ -163,6 +183,7 @@
                     sessionStorage.setItem(STORAGE_LAST, id);
 
                     readerEl.hidden = false;
+                    readerEl.removeAttribute("inert");
                     readerEl.setAttribute("aria-hidden", "false");
                     document.body.classList.add("reader-open");
                     backdropReadyAt = Date.now() + 400;
@@ -185,6 +206,9 @@
 
                     highlightLastRead(id);
                     history.replaceState(null, "", "#read/" + id);
+                })
+                .catch(function () {
+                    if (isOpen) close();
                 });
         });
     }
@@ -194,6 +218,7 @@
         if (currentId) saveReaderScroll(currentId);
 
         readerEl.hidden = true;
+        readerEl.setAttribute("inert", "");
         readerEl.setAttribute("aria-hidden", "true");
         document.body.classList.remove("reader-open");
         isOpen = false;
@@ -265,6 +290,8 @@
         if (e.key === "Escape" && isOpen) close();
     });
     scrollEl.addEventListener("scroll", updateProgress, { passive: true });
+
+    readerEl.setAttribute("inert", "");
 
     bindTriggers();
 

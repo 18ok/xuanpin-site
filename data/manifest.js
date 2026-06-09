@@ -1,4 +1,5 @@
-{
+// 自动生成 · build.py · file:// 预览兜底
+window.XJ_MANIFEST = {
   "site": {
     "name": "玄品心决",
     "tagline": "Temu 选品笔记",
@@ -114,4 +115,4 @@
     "enabled": false,
     "hint": "简报邮件筹备中。可先通过抖音口播找到本站。"
   }
-}
+};

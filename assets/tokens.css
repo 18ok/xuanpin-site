@@ -1,14 +1,22 @@
-/* 选品心决 · 独立内容站，金色仅作品牌点缀 */
+/* 选品心决 · 象牙白浅暖底，附色仅作点睛 */
 :root {
-    --bg: #f6f6f4;
+    --bg: #fffff8;
     --surface: #ffffff;
-    --ink: #2e2e2e;
-    --ink-muted: #5c5c5c;
-    --gold: #e2b87a;
-    --gold-dark: #c99e5e;
-    --gold-bg: rgba(226, 184, 122, 0.08);
-    --border: rgba(46, 46, 46, 0.12);
-    --border-gold: rgba(226, 184, 122, 0.45);
+    --ink: #454545;
+    --ink-muted: #8a8580;
+    /* 相邻色：灰绿 sage，用于进度条、列表点缀 */
+    --accent: #9aab8f;
+    --accent-muted: rgba(154, 171, 143, 0.55);
+    /* 对冲色：淡香槟，用于主按钮描边与引用下划线 */
+    --accent-warm: #c4a882;
+    --accent-warm-deep: #b8957a;
+    --accent-bg: rgba(196, 168, 130, 0.08);
+    /* 兼容旧变量名 */
+    --gold: var(--accent-warm);
+    --gold-dark: var(--accent-warm-deep);
+    --gold-bg: var(--accent-bg);
+    --border: rgba(69, 69, 69, 0.08);
+    --border-gold: rgba(196, 168, 130, 0.35);
     --font-display: "Source Serif 4", "Noto Serif SC", "Songti SC", serif;
     --font-ui: "Source Sans 3", "PingFang SC", "Microsoft YaHei", sans-serif;
     --read-max: 42rem;

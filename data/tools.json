@@ -1,0 +1,21 @@
+{
+  "links": [
+    {
+      "name": "Temu 卖家中心",
+      "url": "https://seller.temu.com/",
+      "category": "平台",
+      "tested": true,
+      "affiliate": false,
+      "note": "日常上架与节点测试入口"
+    },
+    {
+      "name": "Temu 买家站（前台看品）",
+      "url": "https://www.temu.com/",
+      "category": "平台",
+      "tested": true,
+      "affiliate": false,
+      "note": "看主图、售价带、评论分布"
+    }
+  ],
+  "waitlist": ""
+}

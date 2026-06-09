@@ -4,11 +4,13 @@ Design Read: Editorial / 采访笔记，Temu 老板+新人，手稿语言；原�
 
 ## Tokens
 
-| Token | Value |
-|-------|-------|
-| `--bg` | `#f6f6f4` |
-| `--ink` | `#2e2e2e` |
-| `--gold` | `#e2b87a` |
+| Token | Value | 用途 |
+|-------|-------|------|
+| `--bg` | `#fffff8` | 象牙白主底 |
+| `--surface` | `#ffffff` | 卡片/浮层面 |
+| `--ink` | `#454545` | 正文 |
+| `--accent` | `#9aab8f` | 相邻色点睛（进度、列表点） |
+| `--accent-warm` | `#c4a882` | 淡香槟点睛（按钮描边、链接） |
 
 ## Bans
 
