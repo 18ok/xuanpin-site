@@ -1,4 +1,4 @@
-# 选品心决 — Visual Design
+﻿# 玄品心决 — Visual Design
 
 Design Read: Editorial / 采访笔记，Temu 老板+新人，手稿语言；原生 CSS；MOTION 4；DENSITY 3。
 

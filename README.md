@@ -1,8 +1,8 @@
-# 选品心决 · Temu 选品采访笔记
+﻿# 玄品心决 · Temu 选品采访笔记
 
 公开站点：https://18ok.github.io/xuanpin-site/
 
-本仓库为 **选品心决** 静态网站的独立公开仓库，与私有项目 **temu-PUD**（含保密 dashboard）分离。
+本仓库为 **玄品心决** 静态网站的独立公开仓库，与私有项目 **temu-PUD**（含保密 dashboard）分离。
 
 ## 本地预览
 
