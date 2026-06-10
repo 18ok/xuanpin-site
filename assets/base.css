@@ -96,6 +96,33 @@ input:focus-visible {
     text-decoration-color: var(--accent-warm);
 }
 
+.site-nav__pick {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--accent-warm-deep);
+    background: var(--accent-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
+}
+
+.site-nav__pick:hover {
+    color: var(--ink);
+    background: rgba(196, 168, 130, 0.16);
+    text-decoration: none;
+}
+
+.site-nav button.site-nav__pick {
+    font-family: inherit;
+    cursor: pointer;
+}
+
 .read-progress {
     position: fixed;
     top: 0;
@@ -184,11 +211,56 @@ input:focus-visible {
     padding: 1.5rem;
 }
 
+.hero-visual svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 .hero-visual figcaption {
     margin-top: 1rem;
     font-size: 0.875rem;
     color: var(--ink-muted);
     line-height: 1.5;
+}
+
+.hero-featured {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+}
+
+.hero-featured__label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    margin-bottom: 0.5rem;
+}
+
+.hero-featured__title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.45;
+    margin-bottom: 0.35rem;
+}
+
+.hero-featured__meta {
+    font-size: 0.8125rem;
+    color: var(--ink-muted);
+    margin-bottom: 0.875rem;
+}
+
+.hero-featured .btn {
+    width: 100%;
+}
+
+.article-list__item--featured {
+    background: var(--accent-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius);
+    padding-inline: 1rem;
+    margin-block: 0.25rem 0.5rem;
 }
 
 .btn {
@@ -900,15 +972,15 @@ body.reader-open {
 
 .article-tag {
     display: inline-block;
-    font-size: .6875rem;
+    font-size: .75rem;
     font-weight: 600;
-    letter-spacing: .03em;
+    letter-spacing: .04em;
     color: var(--accent-warm-deep);
     background: var(--accent-bg);
     border: 1px solid var(--border-gold);
-    border-radius: 3px;
-    padding: .05rem .45rem;
+    border-radius: 4px;
+    padding: .12rem .55rem;
     margin-right: .5rem;
     vertical-align: middle;
-    line-height: 1.6;
+    line-height: 1.5;
 }

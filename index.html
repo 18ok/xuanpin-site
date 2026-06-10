@@ -24,6 +24,7 @@
             <a class="site-brand" href="index.html"><span data-site-name>玄品心决</span><span data-site-tagline>Temu 选品笔记</span></a>
             <nav aria-label="主导航">
                 <ul class="site-nav">
+                    <li id="nav-featured-pick"></li>
                     <li><a href="#notes">手记</a></li>
                     <li><a href="#latest">采访</a></li>
                     <li><a href="#signals">信号</a></li>
@@ -53,7 +54,27 @@
                     <button type="button" class="btn" data-reader-open="toolbox">工具箱</button>
                 </div>
             </div>
-            <figure class="hero-visual"></figure>
+            <figure class="hero-visual">
+                <svg viewBox="0 0 320 200" role="img" aria-labelledby="annot-title annot-desc">
+                    <title id="annot-title">选品手稿标注示意</title>
+                    <desc id="annot-desc">示意克重、采购价与毛利之间的手算关系，非真实商品数据。</desc>
+                    <rect width="320" height="200" fill="#ffffff" rx="4"/>
+                    <path d="M24 40 Q80 28 140 48" fill="none" stroke="#9aab8f" stroke-width="1.2" stroke-dasharray="4 3"/>
+                    <text x="24" y="32" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8a8580">克重 38g</text>
+                    <path d="M24 90 L280 90" fill="none" stroke="#454545" stroke-width="0.8" opacity="0.12"/>
+                    <text x="24" y="82" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8a8580">采购价</text>
+                    <text x="24" y="108" font-family="Source Serif 4, serif" font-size="14" fill="#454545">$1.20</text>
+                    <path d="M24 140 L280 140" fill="none" stroke="#454545" stroke-width="0.8" opacity="0.12"/>
+                    <text x="24" y="132" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8a8580">售价</text>
+                    <text x="24" y="158" font-family="Source Serif 4, serif" font-size="14" fill="#454545">$4.99</text>
+                    <rect x="200" y="118" width="96" height="52" fill="rgba(196,168,130,0.08)" stroke="#c4a882" stroke-width="1" rx="4"/>
+                    <text x="212" y="140" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8a8580">粗算毛利</text>
+                    <text x="212" y="162" font-family="Source Serif 4, serif" font-size="16" fill="#b8957a">偏低?</text>
+                    <path d="M210 168 Q240 178 268 152" fill="none" stroke="#9aab8f" stroke-width="1.5"/>
+                </svg>
+                <figcaption>手算示意 · 克重 / 采购价 / 毛利 · 非真实 SKU</figcaption>
+                <div class="hero-featured" id="hero-featured" hidden></div>
+            </figure>
         </section>
 
         <section class="shell section reveal" id="notes" aria-labelledby="notes-title">
@@ -93,6 +114,7 @@
         <div class="shell site-footer__inner">
             <div class="site-footer__copy">
                 <p><span data-site-name>玄品心决</span> · 个人业余时间整理 · 受访者发布前过目 · 无真实姓名与公司数据</p>
+                <p class="subscribe-box__hint" style="margin-top:.5rem;font-size:.875rem;color:var(--c-dim);">关注抖音「<a href="https://www.douyin.com/user/huyucheng" target="_blank" rel="noopener" style="color:var(--accent-warm);">胡玉成</a>」看口播版选品笔记</p>
                 <div class="subscribe-box" id="subscribe-box"></div>
             </div>
             <nav aria-label="页脚">

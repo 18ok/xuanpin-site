@@ -4,7 +4,12 @@ window.XJ_MANIFEST = {
     "name": "玄品心决",
     "tagline": "Temu 选品笔记",
     "description": "记录选品路上那杆秤。算克重、懂毛利、不踩坑。当前以 Temu 卖家手记与采访为主。",
-    "keywords": "Temu选品,选品工具,选品采访"
+    "keywords": "Temu选品,选品工具,选品采访",
+    "social": {
+      "douyin": "胡玉成",
+      "douyin_url": "https://www.douyin.com/user/huyucheng",
+      "bio": "在职Temu选品 · 记录选品路上那杆秤"
+    }
   },
   "notes": [
     {
@@ -132,6 +137,8 @@ window.XJ_MANIFEST = {
   ],
   "subscribe": {
     "enabled": false,
-    "hint": "简报邮件筹备中。可先通过抖音口播找到本站。"
+    "hint": "简报邮件筹备中。关注抖音「胡玉成」看口播版选品笔记。",
+    "douyin": "胡玉成",
+    "douyin_url": "https://www.douyin.com/user/huyucheng"
   }
 };

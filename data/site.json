@@ -2,5 +2,10 @@
   "name": "玄品心决",
   "tagline": "Temu 选品笔记",
   "description": "记录选品路上那杆秤。算克重、懂毛利、不踩坑。当前以 Temu 卖家手记与采访为主。",
-  "keywords": "Temu选品,选品工具,选品采访"
+  "keywords": "Temu选品,选品工具,选品采访",
+  "social": {
+    "douyin": "胡玉成",
+    "douyin_url": "https://www.douyin.com/user/huyucheng",
+    "bio": "在职Temu选品 · 记录选品路上那杆秤"
+  }
 }

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>选品判断练习 · 玄品心决</title>
+<link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600&family=Source+Sans+3:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap');
+:root{
+  --bg:#f6f6f4;--card:#fff;--card-hover:#fafafa;--card-alt:#fafafa;
+  --gold:#e2b87a;--gold-dark:#c99e5e;--gold-bg:rgba(226,184,122,0.08);
+  --text:#2e2e2e;--text-dim:#5c5c5c;--text-faded:rgba(46,46,46,0.45);
+  --border:rgba(46,46,46,0.12);--border-light:rgba(46,46,46,0.08);
+  --success:#15803d;--success-bg:rgba(34,197,94,0.08);--danger:#b91c1c;--danger-bg:rgba(239,68,68,0.08);
+  --shadow-sm:0 1px 2px rgba(46,46,46,0.06);--shadow:0 4px 16px rgba(46,46,46,0.08);
+  --radius:6px;--radius-lg:8px;--sidebar-w:220px;
+  --font-display:'Source Serif 4','Noto Serif SC','Songti SC',serif;
+  --font:'Source Sans 3','PingFang SC','Microsoft YaHei',sans-serif;
+  --ease-out:cubic-bezier(0.22,1,0.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--text);line-height:1.65;background:var(--bg);-webkit-font-smoothing:antialiased}
+.app{display:flex;min-height:100vh}
+.sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);background:var(--card);border-right:1px solid var(--border);display:flex;flex-direction:column}
+.sidebar-brand{padding:16px 14px 12px;margin:8px 12px 4px;border-bottom:1px solid var(--border)}
+.sidebar-brand .title{font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--text)}
+.sidebar-brand .sub{font-size:.75rem;color:var(--text-dim);margin-top:4px}
+.sidebar-nav{list-style:none;padding:4px 12px;flex:1}
+.sidebar-nav li{margin-bottom:2px}
+.sidebar-nav a{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:var(--radius);text-decoration:none;color:var(--text-dim);font-size:.9rem;transition:all .15s;cursor:pointer}
+.sidebar-nav a:hover{background:var(--gold-bg);color:var(--text)}
+.sidebar-nav a.active{background:var(--gold-bg);color:var(--text);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+.main{flex:1;padding:28px 32px;max-width:900px}
+.hero{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:20px}
+.hero h1{font-family:var(--font-display);font-size:1.6rem;font-weight:600;margin-bottom:6px}
+.hero p{font-size:.9rem;color:var(--text-dim);line-height:1.55}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:16px}
+.card h2{font-family:var(--font-display);font-size:1.15rem;font-weight:600;margin-bottom:4px}
+.card .desc{font-size:.85rem;color:var(--text-dim);margin-bottom:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-group{display:flex;flex-direction:column;gap:4px}
+.form-group label{font-size:.8rem;color:var(--text-dim);font-weight:500}
+.form-group input,.form-group select{padding:8px 10px;border:1px solid var(--border);border-radius:var(--radius);font-family:var(--font);font-size:.9rem;color:var(--text);background:var(--card);outline:none;transition:border .15s}
+.form-group input:focus,.form-group select:focus{border-color:var(--gold)}
+.form-group select{cursor:pointer}
+.radio-row{display:flex;gap:16px;margin-bottom:12px}
+.radio-row label{display:flex;align-items:center;gap:6px;font-size:.85rem;cursor:pointer}
+.radio-row input[type=radio]{accent-color:var(--gold)}
+.btn-row{display:flex;gap:8px;margin-top:4px}
+.btn{padding:10px 20px;border-radius:var(--radius);border:1px solid var(--border);font-family:var(--font);font-size:.9rem;cursor:pointer;background:var(--card);color:var(--text);transition:all .15s}
+.btn:hover{border-color:var(--gold)}
+.btn-primary{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn-primary:hover{background:var(--gold-dark);border-color:var(--gold-dark)}
+.result-box{background:var(--gold-bg);border:1px solid var(--gold);border-radius:var(--radius-lg);padding:20px;margin-bottom:16px;display:none}
+.result-box .big{font-size:2.2rem;font-weight:600;margin-bottom:4px}
+.result-box .verdict{font-size:.95rem;margin-bottom:8px}
+.result-box .detail{font-size:.85rem;color:var(--text-dim);line-height:1.6}
+.result-box .quote{font-style:italic;color:var(--text);border-left:3px solid var(--gold);padding-left:12px;margin-top:8px;font-size:.85rem}
+.history-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.history-table th{text-align:left;padding:8px 10px;border-bottom:2px solid var(--border);color:var(--text-dim);font-weight:500}
+.history-table td{padding:7px 10px;border-bottom:1px solid var(--border-light)}
+.history-table .pass{color:var(--success);font-weight:500}
+.history-table .fail{color:var(--danger);font-weight:500}
+.empty-state{text-align:center;padding:32px 16px;color:var(--text-faded);font-size:.9rem}
+@media(max-width:640px){.form-row{grid-template-columns:1fr}.main{padding:16px}.hero{padding:16px 18px}.card{padding:16px}}
+</style>
+</head>
+<body>
+<div class="app">
+<nav class="sidebar">
+<div class="sidebar-brand"><div class="title">玄品心决</div><div class="sub">选品练习</div></div>
+<ul class="sidebar-nav">
+<li><a class="active" onclick="switchPage('practice')"><span>⚖️</span> <span class="nav-text">判断练习</span></a></li>
+<li><a href="../index.html"><span>📖</span> <span class="nav-text">回内容站</span></a></li>
+</ul>
+</nav>
+<main class="main">
+<div class="hero"><h1>⚖️ 选品判断练习</h1><p>根据你填的参数，对照品类基准线给出判断。每一条判断都会引用玄品心决采访里的真实经验。</p></div>
+<div class="card">
+<h2>输入参数</h2>
+<p class="desc">填一个你在看的品，看看它过不过你的底线。</p>
+<div class="form-row">
+<div class="form-group"><label>品类</label><select id="cat"><option value="hairpin">发卡</option><option value="pet">宠物挂件</option><option value="general">百货</option><option value="toy">潮玩</option></select></div>
+<div class="form-group"><label>克重 (g)</label><input type="number" id="weight" min="1" step="1" placeholder="例: 22"></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label>售价 ($)</label><input type="number" id="price" min="0.01" step="0.01" placeholder="例: 5.99"></div>
+<div class="form-group"><label>采购价 ($)</label><input type="number" id="cost" min="0.01" step="0.01" placeholder="例: 1.20"></div>
+</div>
+<div class="radio-row"><span style="font-size:.8rem;color:var(--text-dim);font-weight:500;margin-right:8px">主图差异化</span>
+<label><input type="radio" name="diff" value="yes" checked> 有</label>
+<label><input type="radio" name="diff" value="no"> 无</label>
+</div>
+<div class="btn-row"><button class="btn btn-primary" onclick="judge()">提交判断</button><button class="btn" onclick="clearForm()">清空</button></div>
+</div>
+<div class="result-box" id="result"></div>
+<div class="card">
+<h2>判断记录</h2>
+<p class="desc">每次提交的记录存在本地浏览器，不会上传。</p>
+<div id="historyRoot"><div class="empty-state">还没有判断记录，提交一单试试。</div></div>
+</div>
+</main>
+</div>
+<script>
+var CATEGORY_BASELINES={
+  hairpin:{margin:35,weightRange:[8,30],desc:'发卡',quote:'「克重看着轻，毛利一算就穿底」——interview-01'},
+  pet:{margin:30,weightRange:[10,50],desc:'宠物挂件',quote:'「图案能不能做差异化，宠物类太吃图」——interview-01'},
+  general:{margin:25,weightRange:[15,100],desc:'百货',quote:'「主图有没有同质化到恶心」——interview-02'},
+  toy:{margin:35,weightRange:[8,60],desc:'潮玩',quote:'「采购约$1.20，售价$5.99」——interview-01'}
+};
+var STORAGE_KEY='xuanpin_practice_log';
+function getLog(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||[]}catch(e){return[]}}
+function saveLog(log){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(log))}catch(e){}}
+function judge(){
+  var cat=document.getElementById('cat').value;
+  var w=parseFloat(document.getElementById('weight').value);
+  var p=parseFloat(document.getElementById('price').value);
+  var c=parseFloat(document.getElementById('cost').value);
+  var diff=document.querySelector('input[name=diff]:checked').value;
+  if(!w||!p||!c){document.getElementById('result').style.display='block';document.getElementById('result').innerHTML='<div style="color:var(--danger)">请填完所有参数</div>';return}
+  if(w<=0||p<=0||c<=0){document.getElementById('result').style.display='block';document.getElementById('result').innerHTML='<div style="color:var(--danger)">数值必须大于0</div>';return}
+  var bl=CATEGORY_BASELINES[cat];
+  var margin=((p-c)/p*100);
+  var marginOk=margin>=bl.margin;
+  var weightOk=w>=bl.weightRange[0]&&w<=bl.weightRange[1];
+  var diffOk=diff==='yes';
+  var passCount=[marginOk,weightOk,diffOk].filter(Boolean).length;
+  var verdict=passCount>=2?'✅ 此品可通过初步判断':'⚠️ 此品需进一步核查';
+  var resultBox=document.getElementById('result');
+  resultBox.style.display='block';
+  resultBox.innerHTML='<div class="big" style="color:'+(marginOk?'var(--success)':'var(--danger)')+'">毛利率 '+(marginOk?'✓':'✗')+' '+(marginOk?'达标':'偏低')+'</div><div class="verdict">'+verdict+'</div><div class="detail">品类：'+bl.desc+'<br>毛利率：'+margin.toFixed(1)+'%（基准 ≥ '+bl.margin+'%）<br>克重：'+w+'g（'+(weightOk?'在':'不在')+'基准区间 '+bl.weightRange[0]+'-'+bl.weightRange[1]+'g）<br>主图差异化：'+(diffOk?'有':'无')+'</div><div class="quote">'+bl.quote+'</div>';
+  var record={date:new Date().toISOString().slice(0,10),time:new Date().toLocaleTimeString(),cat:bl.desc,weight:w,price:p,cost:c,margin:margin.toFixed(1),diff:diffOk?'有':'无',pass:passCount>=2};
+  var log=getLog();log.unshift(record);saveLog(log);renderHistory();
+}
+function renderHistory(){
+  var log=getLog();var root=document.getElementById('historyRoot');
+  if(log.length===0){root.innerHTML='<div class="empty-state">还没有判断记录，提交一单试试。</div>';return}
+  var h='<table class="history-table"><thead><tr><th>日期</th><th>品类</th><th>毛利率</th><th>克重</th><th>结果</th></tr></thead><tbody>';
+  log.slice(0,50).forEach(function(r){h+='<tr><td>'+r.date+'</td><td>'+r.cat+'</td><td>'+r.margin+'%</td><td>'+r.weight+'g</td><td class="'+(r.pass?'pass':'fail')+'">'+(r.pass?'通过':'核查')+'</td></tr>';});
+  h+='</tbody></table>';root.innerHTML=h;
+}
+function clearForm(){document.getElementById('weight').value='';document.getElementById('price').value='';document.getElementById('cost').value='';document.querySelector('input[name=diff][value=yes]').checked=true;document.getElementById('result').style.display='none'}
+function switchPage(name){document.querySelectorAll('.sidebar-nav a').forEach(function(a){a.classList.remove('active')});document.querySelectorAll('.sidebar-nav a').forEach(function(a){if((a.getAttribute('onclick')||'').indexOf("'"+name+"'")!==-1)a.classList.add('active')})}
+renderHistory();
+</script>
+</body>
+</html>

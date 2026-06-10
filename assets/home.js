@@ -25,6 +25,7 @@
     function articleRow(item) {
         var published = item.status === "published" && item.content;
         var tagHtml = item.tag ? '<span class="article-tag">' + esc(item.tag) + '</span>' : '';
+        var featuredClass = item.tag ? " article-list__item--featured" : "";
         var titleInner = published
             ? tagHtml + '<button type="button" class="reader-inline-link reader-inline-link--title" data-reader-open="' + esc(item.id) + '">' + esc(item.title) + "</button>"
             : tagHtml + esc(item.title);
@@ -32,12 +33,41 @@
             ? '<button type="button" class="article-list__link reader-inline-link" data-reader-open="' + esc(item.id) + '">阅读</button>'
             : '<span class="article-list__link article-list__link--soon">整理中</span>';
         return (
-            '<li class="article-list__item" data-reader-row="' + esc(item.id) + '">' +
+            '<li class="article-list__item' + featuredClass + '" data-reader-row="' + esc(item.id) + '">' +
             "<div><h3 class=\"article-list__title\">" + titleInner + "</h3>" +
             '<p class="article-list__meta">' + esc(item.meta || "") + "</p></div>" +
             action +
             "</li>"
         );
+    }
+
+    function findFeaturedInterview(interviews) {
+        return (interviews || []).find(function (item) {
+            return item.tag && item.status === "published" && item.content;
+        });
+    }
+
+    function renderFeaturedPick(item) {
+        var nav = document.getElementById("nav-featured-pick");
+        var hero = document.getElementById("hero-featured");
+        if (!item) {
+            if (nav) nav.innerHTML = "";
+            if (hero) hero.hidden = true;
+            return;
+        }
+        if (nav) {
+            nav.innerHTML =
+                '<button type="button" class="site-nav__pick reader-inline-link" data-reader-open="' + esc(item.id) + '">' +
+                esc(item.tag) + "</button>";
+        }
+        if (hero) {
+            hero.hidden = false;
+            hero.innerHTML =
+                '<p class="hero-featured__label"><span class="article-tag">' + esc(item.tag) + "</span> 从这里读起</p>" +
+                '<p class="hero-featured__title">' + esc(item.title) + "</p>" +
+                '<p class="hero-featured__meta">' + esc(item.meta || "") + "</p>" +
+                '<button type="button" class="btn btn--primary" data-reader-open="' + esc(item.id) + '">阅读采访</button>';
+        }
     }
 
     function renderList(el, items) {
@@ -106,6 +136,7 @@
 
     function renderHome(data) {
         applySiteMeta(data.site);
+        renderFeaturedPick(findFeaturedInterview(data.interviews));
         renderList(document.getElementById("notes-list"), data.notes || []);
         renderList(document.getElementById("interview-list"), data.interviews || []);
         renderContrasts(document.getElementById("contrast-root"), data.contrasts || []);
